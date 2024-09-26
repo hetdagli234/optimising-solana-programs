@@ -20,8 +20,8 @@ describe("counter", () => {
 
     console.log("Initialize transaction signature", `https://solana.fm/tx/${tx}?cluster=devnet-alpha`);
 
-    const account = await program.account.counter.fetch(counter.publicKey);
-    expect(account.count.toNumber()).to.equal(0);
+    const counterAccount = await program.account.counterData.fetch(counter.publicKey);
+    expect(counterAccount.count.toNumber()).to.equal(0);
   });
 
   it("Incremented the count", async () => {
@@ -32,7 +32,7 @@ describe("counter", () => {
       
     console.log("Increment transaction signature", `https://solana.fm/tx/${tx}?cluster=devnet-alpha`);
 
-    const account = await program.account.counter.fetch(counter.publicKey);
-    expect(account.count.toNumber()).to.equal(1);
+    const counterAccount = await program.account.counterData.fetch(counter.publicKey);
+    expect(counterAccount.count.toNumber()).to.equal(1);
   });
 });
