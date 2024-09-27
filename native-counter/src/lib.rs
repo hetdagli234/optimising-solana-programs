@@ -92,6 +92,8 @@ impl Counter {
         if data.len() < size_of::<Self>() {
             return Err(ProgramError::AccountDataTooSmall);
         }
+        
+        //First 8 bytes is the count
         data[..8].copy_from_slice(&self.count.to_le_bytes());
         Ok(())
     }
@@ -100,6 +102,8 @@ impl Counter {
         if data.len() < size_of::<Self>() {
             return Err(ProgramError::AccountDataTooSmall);
         }
+
+        //First 8 bytes is the count
         let count = u64::from_le_bytes(data[..8].try_into().unwrap());
         Ok(Self { count })
     }
