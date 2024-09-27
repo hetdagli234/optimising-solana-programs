@@ -6,7 +6,7 @@ use solana_program::{
     pubkey::Pubkey,
     rent::Rent,
     system_instruction,
-    program::{invoke},
+    program::invoke,
     sysvar::Sysvar,
 };
 use std::mem::size_of;
