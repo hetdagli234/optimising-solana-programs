@@ -1,0 +1,1 @@
+/Users/hetdagli/Desktop/learning/optimising-solana-programs/native-counter/target/sbf-solana-solana/release/libnative_counter.rlib: /Users/hetdagli/Desktop/learning/optimising-solana-programs/native-counter/src/lib.rs

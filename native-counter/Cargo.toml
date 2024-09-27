@@ -1,0 +1,11 @@
+[package]
+name = "native-counter"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "native_counter"
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-program = "2.0.10"

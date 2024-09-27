@@ -14,6 +14,8 @@ pub mod counter {
  
     pub fn increment(ctx: Context<Update>) -> Result<()> {
         let counter = &mut ctx.accounts.counter;
+        //Not doing checked_add, wrapping add or any overflow checks
+        //to keep it simple
         counter.count += 1;
         Ok(())
     }

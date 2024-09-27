@@ -13,6 +13,8 @@ pub mod counter {
 
     pub fn increment(ctx: Context<Update>) -> Result<()> {
         let mut counter = ctx.accounts.counter.load_mut()?;
+        //Not doing checked_add, wrapping add or any overflow checks
+        //to keep it simple
         counter.count += 1;
         Ok(())
     }
