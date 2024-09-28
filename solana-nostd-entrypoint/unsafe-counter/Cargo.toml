@@ -1,0 +1,18 @@
+[package]
+name = "unsafe-counter"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "unsafe_counter"
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-nostd-entrypoint = { path = "../solana-nostd-entrypoint" }
+solana-program = "1.18.1"
+
+[dev-dependencies]
+solana-program-test = "1.18.1"
+solana-sdk = "1.18.1"
+tokio = { version = "1.35.1", features = ["full"] }

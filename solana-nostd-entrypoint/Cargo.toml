@@ -1,0 +1,6 @@
+[workspace]
+members = ["solana-nostd-entrypoint", "example-program", "unsafe-counter"]
+
+
+[workspace.dependencies]
+solana-nostd-entrypoint = { path = "./solana-nostd-entrypoint" }

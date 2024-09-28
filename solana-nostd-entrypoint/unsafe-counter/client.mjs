@@ -9,7 +9,7 @@ import {
 } from "@solana/web3.js";
 import feePayerWallet from './feePayer-wallet.json' with { type: "json" };
 
-const programId = new PublicKey("GjwRSxZLMCaWwK7BHV5fsZ4zAmxjzaMHTAHED7sK63fm");
+const programId = new PublicKey("EgB1zom79Ek4LkvJjafbkUMTwDK9sZQKEzNnrNFHpHHz");
 
 // Connect to the Solana devnet
 const connection = new Connection("https://api.devnet.solana.com", "confirmed");
@@ -18,33 +18,39 @@ const connection = new Connection("https://api.devnet.solana.com", "confirmed");
 const counterKeypair = Keypair.generate();
 
 async function initialize() {
-    //Imported a private key from a file for paying fees,you can use the default path for your solana config: ~/.config/solana/id.json
     const payer = Keypair.fromSecretKey(new Uint8Array(feePayerWallet));
 
-    const tx = new Transaction().add(
-        new TransactionInstruction({
-            programId: programId,
-            keys: [
-                { pubkey: counterKeypair.publicKey, isSigner: true, isWritable: true },
-                { pubkey: payer.publicKey, isSigner: true, isWritable: true },
-                { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
-            ],
-            data: Buffer.from([0]), // 0 for initialize instruction
-        })
-    );
+    try {
+        const tx = new Transaction().add(
+            new TransactionInstruction({
+                programId: programId,
+                keys: [
+                    { pubkey: payer.publicKey, isSigner: true, isWritable: true },
+                    { pubkey: counterKeypair.publicKey, isSigner: true, isWritable: true },
+                    { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
+                ],
+                data: Buffer.from([0]), // 0 for initialize instruction
+            })
+        );
 
-    const txHash = await sendAndConfirmTransaction(connection, tx, [payer, counterKeypair]);
-    console.log("Initialize transaction signature", `https://solana.fm/tx/${txHash}?cluster=devnet-alpha`);
+        const txHash = await sendAndConfirmTransaction(connection, tx, [payer, counterKeypair]);
+        console.log("Initialize transaction signature", `https://solana.fm/tx/${txHash}?cluster=devnet-alpha`);
 
-    // Fetch the account data to verify initialization
-    const accountInfo = await connection.getAccountInfo(counterKeypair.publicKey);
-    const count = accountInfo.data.readBigUInt64LE(0);
-    console.log("Initial count:", count);
+        // Fetch the account data to verify initialization
+        const accountInfo = await connection.getAccountInfo(counterKeypair.publicKey);
+        if (!accountInfo) {
+            throw new Error("Failed to create account");
+        }
+        const count = accountInfo.data.readBigUInt64LE(0);
+        console.log("Initial count:", count);
 
-    if (count !== 0n) {
-        throw new Error("Initialization failed: count is not 0");
+        if (count !== 0n) {
+            throw new Error("Initialization failed: count is not 0");
+        }
+        console.log("Initialization successful!");
+    } catch (error) {
+        console.error("Initialization error:", error);
     }
-    console.log("Initialization successful!");
 }
 
 async function increment() {
