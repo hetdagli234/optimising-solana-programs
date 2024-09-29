@@ -50,3 +50,7 @@ Please refer to the individual README files in each program's directory for spec
 4. Set up a Solana wallet for testing (you can use `solana-keygen new` to create a new keypair)
 
 For detailed instructions on running each program and its tests, please refer to the README files in the respective program directories.
+
+## Credits
+
+The Solana No-STD Entrypoint implementation is based on the work from [solana-nostd-entrypoint](https://github.com/cavemanloverboy/solana-nostd-entrypoint) by [@cavemanloverboy](https://github.com/cavemanloverboy).
