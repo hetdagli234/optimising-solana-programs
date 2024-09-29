@@ -663,6 +663,7 @@ version = "0.1.0"
 dependencies = [
  "anchor-lang",
  "bytemuck",
+ "solana-program",
 ]
 
 [[package]]
