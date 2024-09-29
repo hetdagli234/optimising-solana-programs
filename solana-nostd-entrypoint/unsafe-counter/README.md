@@ -1,7 +1,6 @@
-# Native Counter Program (Rust)
+# Unsafe Counter Program (Rust no_std)
 
-This is an implementation of a simple counter program using native Rust without the Anchor framework.
-
+This is an implementation of a simple counter program using native Rust with no_std and unsafe code.
 ## Setup
 
 1. Install Rust and Cargo: https://www.rust-lang.org/tools/install
@@ -21,7 +20,7 @@ This is an implementation of a simple counter program using native Rust without 
 
 2. Deploy the program:
    ```
-   solana program deploy target/deploy/native_counter.so
+   solana program deploy target/deploy/unsafe_counter.so
    ```
 
 ## Testing the Program

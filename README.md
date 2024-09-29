@@ -38,7 +38,7 @@ Detailed blog post [Optimizing Solana Programs](https://medium.com/@het2341999/o
 1. [Counter (Anchor)](./counter/README.md)
 2. [Counter Zero-Copy (Anchor)](./counter-zero-copy/README.md)
 3. [Native Counter (Rust)](./native-counter/README.md)
-4. [Solana No-STD Entrypoint (Unsafe Rust)](./solana-nostd-entrypoint/README.md)
+4. [Solana No-STD Entrypoint (Unsafe Rust)](./solana-nostd-entrypoint/unsafe-counter/README.md)
 
 Please refer to the individual README files in each program's directory for specific instructions on setup, running the program, and testing.
 
